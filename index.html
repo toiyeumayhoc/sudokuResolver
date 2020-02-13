@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku Resolver</title>
+    <script src="Maze.js"></script>
+    <script src="Cell.js"></script>
+    <script src="HtmlProcessor.js"></script>
+    <script src="SudokuResolver.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="allElement">
+    <h1>Sudoku Resolver</h1>
+    <div id="mainMaze"></div>
+    <p id="status">Please input your sudoku maze</p>
+    <button type="button" class="button" onclick="solve();"><a>Solve</a></button>
+</div>
+<script>
+    let sudokuMaze = [
+        [2, 0, 3, 0, 0, 8, 6, 0, 7],
+        [1, 4, 0, 7, 2, 6, 0, 0, 9],
+        [5, 0, 7, 1, 3, 9, 4, 2, 8],
+        [0, 2, 5, 0, 8, 1, 9, 0, 4],
+        [4, 1, 0, 9, 0, 3, 2, 0, 5],
+        [0, 7, 9, 2, 0, 5, 0, 3, 6],
+        [6, 0, 2, 0, 1, 0, 0, 9, 3],
+        [7, 0, 0, 5, 0, 2, 0, 0, 1],
+        [0, 8, 1, 3, 6, 7, 0, 4, 0]
+    ];
+
+    let maze = new Maze();
+    let htmlProcess = new HtmlProcessor(maze,400,400);
+    function solve(){
+        let inputMaze = htmlProcess.getInputMaze();
+        console.log(inputMaze);
+        maze.setMaze(inputMaze);
+        if(!maze.checkValidMaze()){
+            document.getElementById("status").innerHTML  = "Invalid maze. Can not solve this maze!!!";
+        }else {
+            let resolver = new SudokuResolver();
+            if (resolver.solve(maze)) {
+                document.getElementById("status").innerHTML = "Finished!!!";
+            } else {
+                document.getElementById("status").innerHTML = "Invalid maze. Can not solve this maze!!!";
+            }
+            maze.show();
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
