@@ -129,5 +129,18 @@ class Maze {
         console.log(this.sudokuMaze);
     }
 
+    cloneMazeCell(){
+        let clone = new Array(this.rows);
+        for (let i = 0; i < this.rows; i++) {
+            clone[i] = new Array(this.cols);
+            for (let j = 0; j < this.cols; j++) {
+                clone[i][j] = this.mazeCell[i][j].value;
+            }
+        }
+        let cloneMaze = new Maze();
+        cloneMaze.setMaze(clone);
+        return cloneMaze;
+
+    }
 
 }

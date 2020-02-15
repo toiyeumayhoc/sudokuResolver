@@ -69,4 +69,18 @@ class HtmlProcessor{
         }
         return inputMaze;
     }
+
+    animate(animateMaze){
+        let index = 0;
+        let intervalID = setInterval(function(){
+            console.log(index);
+            if (index == animateMaze.length-1) {
+                document.getElementById("status").innerHTML = "Finish!!!";
+                clearInterval(intervalID);
+            }
+            animateMaze[index].show();
+            index = index+1;
+        }, 1);
+
+    }
 }
