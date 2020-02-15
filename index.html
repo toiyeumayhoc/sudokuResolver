@@ -11,13 +11,20 @@
 </head>
 <body>
 <div class="allElement">
-    <h1>Sudoku Resolver</h1>
-    <div id="mainMaze"></div>
-    <p id="status">Please input your sudoku maze</p>
+    <div style="height: 40px;">
+        <h1>Sudoku Resolver</h1>
+    </div>
+    <div id="mainMaze" style="margin-top: 0px"></div>
+    <div style="height: 25px; padding-top: 5px;">
+        <p class= "status" id="status">Please input your sudoku maze</p>
+    </div>
+    <div style="height: 45px; padding-left: 22px">
+        <p class="onoff"><input type="checkbox" value="1" id="checkboxID" onclick="clickCheckAnimate()"><label for="checkboxID"></label></p>
+    </div>
     <button type="button" class="button" onclick="solve();"><a>Solve</a></button>
 </div>
 <script>
-    let doYouWantAnimation = true;
+    let doYouWantAnimation = false;
     let maze = new Maze();
     let htmlProcess = new HtmlProcessor(maze,400,400);
     function solve(){
@@ -30,7 +37,7 @@
             let resolver = new SudokuResolver();
             let animateMaze = resolver.solve(maze);
             if (animateMaze !== undefined) {
-                if(doYouWantAnimation){
+                if(doYouWantAnimation && animateMaze.length!=0){
                     htmlProcess.animate(animateMaze);
                     document.getElementById("status").innerHTML = "Solving...";
                 }else{
@@ -42,6 +49,9 @@
             }
             maze.show();
         }
+    }
+    function clickCheckAnimate(){
+        doYouWantAnimation = !doYouWantAnimation;
     }
 
 
