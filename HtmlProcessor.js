@@ -14,7 +14,7 @@ class HtmlProcessor{
 
     initMaze(){
         let mazeDiv = document.getElementById("mainMaze");
-        mazeDiv.style.width = this.mazeWidth+"px";
+        
         mazeDiv.style.height = this.mazeHeight+"px";
         mazeDiv.style.border = "1px solid";
         mazeDiv.style.display = "table";
